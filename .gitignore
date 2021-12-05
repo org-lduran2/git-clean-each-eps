@@ -1,0 +1,15 @@
+# releases, compressed files
+*.zip
+
+# datasets
+*.csv
+*.docx
+
+# Python cached binaries
+__pycache__/
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Python scripts exported from Jupyter notebooks in lab 4
+hw4/**/*.py
