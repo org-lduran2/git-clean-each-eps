@@ -2,8 +2,7 @@
 *.zip
 
 # datasets
-*.csv
-*.docx
+dataset-in
 
 # Python cached binaries
 __pycache__/

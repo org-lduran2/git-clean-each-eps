@@ -1,2 +1,41 @@
 #!/usr/bin/env sh
+# /git-config-filters
+# Configures the filters for Jupyter Notebooks for this project.  The
+# configuration is to reset the execution count to `null` and ignore
+# the cell ID line per notebook cell.
+#
+# By        : Leomar Durán <https://github.com/lduran2/>
+# When      : 2021-12-05t
+# Where     : Temple University
+# For       : CIS 4526
+# Version   : 
+# Canonical : https://github.com/lduran2/cis4526-machine_learning_foundations/blob/master/git-config-filters
+#
+# CHANGELOG :
+#    v1.2.1 - 2021-12-05t03:57
+#        combined both filters in .gitattribute and renamed the
+#            combined filter in to `ipynb`
+#        now filtering successfully
+#
+#    v1.2.0 - 2021-12-05t03:32
+#        /config-filters -> ./git-config-filters :
+#            combined both filters
+#
+#    v1.1.2 - 2021-12-05t02:23
+#        hw4-sklearn_mlp/config-filters -> ../config-filters .
+#
+#    v1.1.1 - 2021-12-05t02:14
+#        hw4-sklearn_mlp/config-filters :
+#            fixed typo in range for `cell_id` filter :
+#                [a-zA-Z0-9-_] -> [a-zA-Z0-9_]
+#
+#    v1.1.0 - 2021-12-05t02:14
+#        hw4-sklearn_mlp/config-execution_count-filter.sh -> ./config-filters :
+#            added filter `cell_id` to ignore lines updating cell IDs
+#
+#    v1.0.0 - 2021-12-05t01:55
+#        hw4-sklearn_mlp/config-execution_count-filter.sh :
+#            set filter `execution_count` to null out execution_count
+#                on `git add`
+#
 git config filter.ipynb.clean 'sed "s/\(^\s*"\""execution_count"\"": \)[0-9]\+\(,"\$"\)/\1null\2/g; s/^\s*"\""id"\"": "\""[a-zA-Z0-9_]\+"\"","\$"//g"'

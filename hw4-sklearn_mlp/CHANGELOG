@@ -1,0 +1,33 @@
+ CHANGELOG :
+    v0.0.1 - 2021-12-05t14:16
+        CHANGELOG :
+            formatted CHANGELOG so far
+
+    v0.0.0 - 2021-12-05t12:48
+        .gitingore :
+            moved dataset into its own folder, which gets .gitignore'd
+        CHANGELOG :
+            added CHANGELOGs
+
+    v(-1).2.0 - 2021-12-05t03:57
+        .gitattribute :
+            combined both filters for *.ipynb and renamed the
+                combined filter in to `ipynb`
+            now filtering successfully
+
+    v(-1).1.0 - 2021-12-05t02:14
+        .gitattribute :
+            added filter for cell ID
+                (note: two filters on one file do not work)
+        HelloWorld.ipynb
+            added the cells[1]
+
+    v(-1).0.0 - 2021-12-05t01:55
+        .gitingore :
+            releases, compressed files, datasets (*.csv *.docx),
+                binaries, Jupyter notebook checkpoints,
+                exported scripts
+        .gitattribute :
+            applying the execution count filter
+        HelloWorld.ipynb :
+            hello world project in Jupyter notebook
