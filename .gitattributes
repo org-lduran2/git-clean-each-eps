@@ -1,2 +1,1 @@
-*.ipynb	filter=execution_count
-*.ipynb	filter=cell_id
+*.ipynb	filter=ipynb_filter
