@@ -1,4 +1,8 @@
  CHANGELOG :
+    v0.1.1 - 2021-12-05t23:58
+        learning_sklearn_mlp.ipynb :
+            plotted the results
+
     v0.1.0 - 2021-12-05t21:12
         .gitignore :
             fixed path for project and `dataset-in/`
