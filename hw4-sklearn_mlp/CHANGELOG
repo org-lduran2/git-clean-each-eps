@@ -1,4 +1,8 @@
  CHANGELOG :
+    v1.0.1 - 2021-12-06t03:47
+        part010_splitting_the_data.ipynb :
+            assured that the IDs are succeeding in order
+
     v1.0.0 - 2021-12-06t03:17
         part010_splitting_the_data.ipynb :
             reading in the data files
