@@ -2,7 +2,7 @@
 *.zip
 
 # datasets
-dataset-in
+dataset-in/
 
 # Python cached binaries
 __pycache__/
@@ -11,4 +11,4 @@ __pycache__/
 .ipynb_checkpoints/
 
 # Python scripts exported from Jupyter notebooks in lab 4
-hw4/**/*.py
+hw4-sklearn_mlp/**/*.py

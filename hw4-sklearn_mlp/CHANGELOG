@@ -1,4 +1,11 @@
  CHANGELOG :
+    v0.1.0 - 2021-12-05t21:12
+        .gitignore :
+            fixed path for project and `dataset-in/`
+        learning_sklearn_mlp.ipynb :
+            experimented with the class `sklearn.neural_network.
+                MLPClassifier`
+
     v0.0.1 - 2021-12-05t14:16
         CHANGELOG :
             formatted CHANGELOG so far
