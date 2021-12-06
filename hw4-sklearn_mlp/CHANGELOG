@@ -1,4 +1,8 @@
  CHANGELOG :
+    v1.0.0 - 2021-12-06t03:17
+        part010_splitting_the_data.ipynb :
+            reading in the data files
+
     v0.1.1 - 2021-12-05t23:58
         learning_sklearn_mlp.ipynb :
             plotted the results
