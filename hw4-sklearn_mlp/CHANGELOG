@@ -1,4 +1,12 @@
  CHANGELOG :
+    v1.1.0 - 2021-12-08t02:00
+        part020_normalize_features.ipynb :
+            imported `normalizeFeatures` from `hw3-gradient_descent`
+
+    v1.0.4 - 2021-12-07t23:26
+        part010_splitting_the_data.ipynb :
+            `main` function, added `removeIds`, `splitLabels` to `splitFeaturesLabels`
+
     v1.0.3 - 2021-12-07t22:50
         part010_splitting_the_data.ipynb :
             documented and cleaned up
