@@ -1,4 +1,10 @@
  CHANGELOG :
+    v1.0.2 - 2021-12-07t19:36
+        part010_splitting_the_data.ipynb :
+            imported `splitFeaturesLabels` from `hw3-gradient_descent`
+            fixed keys when checking that the data's IDs are in order
+                (originally, it would only check 'trainXy')
+
     v1.0.1 - 2021-12-06t03:47
         part010_splitting_the_data.ipynb :
             assured that the IDs are succeeding in order
