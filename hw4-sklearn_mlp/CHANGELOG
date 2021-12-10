@@ -1,4 +1,10 @@
  CHANGELOG :
+    v1.1.2 - 2021-12-10t00:12
+        part020_normalize_features.ipynb :
+            completed `main` function
+        *.ipynb :
+            syntax documentation for functions with tuples
+
     v1.1.1 - 2021-12-08t03:20
         part020_normalize_features.ipynb :
             implemented and tested `findFeatureParameters` and
