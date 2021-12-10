@@ -1,5 +1,17 @@
  CHANGELOG :
-    v1.1.3 - 2021-12-10t09:35
+    v1.1.7 - 2021-12-10t17:04
+        part012_removing_outliers.ipynb :
+            removing ys with Xs
+
+    v1.1.6 - 2021-12-10t13:01
+        part015_feature_pruning_selection.ipynb :
+            selecting features
+
+    v1.1.5 - 2021-12-10t09:44
+        part030_training_the_mlp.ipynb :
+            testing out hyperparameters
+
+    v1.1.4 - 2021-12-10t09:35
         part012_removing_outliers.ipynb :
             removing distant sample
 
