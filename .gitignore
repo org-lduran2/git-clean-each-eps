@@ -11,4 +11,4 @@ __pycache__/
 .ipynb_checkpoints/
 
 # Python scripts exported from Jupyter notebooks in lab 4
-hw4-sklearn_mlp/**/*.py
+hw4-sklearn_mlp/**/part[0-9]*.py
