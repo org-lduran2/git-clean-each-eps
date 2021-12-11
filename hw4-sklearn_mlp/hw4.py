@@ -1,7 +1,20 @@
 r'''
  /hw4-sklearn_mlp/hw4.py
+ Implements and tests a gradient descent algorithm with numerical
+ differentiation.
+
+ By        : Leomar Durán <https://github.com/lduran2/>
+ When      : 2021-12-10t22:54
+ Where     : Temple University
+ For       : CIS 4526
+ Version   : 2.0.2
+ Canonical : https://github.com/lduran2/cis4526-machine_learning_foundations/blob/master/hw4-sklearn_mlp/hw4.py
+
  CHANGELOG :
-    v2.0.0 - 2021-12-10t19:02
+    v2.0.2 - 2021-12-10t22:54
+        finished remove conflicting features
+
+    v2.0.1 - 2021-12-10t19:02
         implemented backward difference system
 
     v2.0.0 - 2021-12-10t17:04
@@ -44,8 +57,6 @@ r'''
                 `normalizeFeatures`
         part010_splitting_the_data.ipynb :
             added `Axis` enum
-        Makefile :
-            making `part020`, `part010`
 
     v1.1.0 - 2021-12-08t02:00
         part020_normalize_features.ipynb :
@@ -73,61 +84,19 @@ r'''
     v1.0.0 - 2021-12-06t03:17
         part010_splitting_the_data.ipynb :
             reading in the data files
-
-    v0.1.1 - 2021-12-05t23:58
-        learning_sklearn_mlp.ipynb :
-            plotted the results
-
-    v0.1.0 - 2021-12-05t21:12
-        .gitignore :
-            fixed path for project and `dataset-in/`
-        learning_sklearn_mlp.ipynb :
-            experimented with the class `sklearn.neural_network.
-                MLPClassifier`
-
-    v0.0.1 - 2021-12-05t14:16
-        CHANGELOG :
-            formatted CHANGELOG so far
-
-    v0.0.0 - 2021-12-05t12:48
-        .gitingore :
-            moved dataset into its own folder, which gets .gitignore'd
-        CHANGELOG :
-            added CHANGELOGs
-
-    v(-1).2.0 - 2021-12-05t03:57
-        .gitattribute :
-            combined both filters for *.ipynb and renamed the
-                combined filter in to `ipynb`
-            now filtering successfully
-
-    v(-1).1.0 - 2021-12-05t02:14
-        .gitattribute :
-            added filter for cell ID
-                (note: two filters on one file do not work)
-        HelloWorld.ipynb
-            added the cells[1]
-
-    v(-1).0.0 - 2021-12-05t01:55
-        .gitingore :
-            releases, compressed files, datasets (*.csv *.docx),
-                binaries, Jupyter notebook checkpoints,
-                exported scripts
-        .gitattribute :
-            applying the execution count filter
-        HelloWorld.ipynb :
-            hello world project in Jupyter notebook
  '''
 
 import numpy as np  # for np.ndarray
 from enum import Enum # to superclass Axis
 
 def main():
+    # read in the data from the data files
     data = putDataFromFiles(DATA_DIR, DATA_FILENAMES, {})
-    print(r'data', data[r'trainXy'])
-    edgeArray = removeConflictingFeatures(data[r'trainXy'])
-    print(r'edgeArray', edgeArray)
-    print(r'edgeArray', removeConflictingFeatures(np.array([[1,2,3],[4,5,6],[1,2,3]])))
+    # get the testing data
+    (testX, _) = splitFeaturesLabels(data['testX'], True, splitLabels=False)
+    (_, test_y) = splitFeaturesLabels(data['test_y'], True)
+    (trainX, train_y) = removeConflictingFeatures(data['trainXy'])
+# def main()
 
 # constants
 DATA_DIR = r'dataset-in/'   # directory holding the data files
@@ -141,6 +110,10 @@ DELIMITER = r','    # used to separate values in DATA_FILENAME
 
 # array for backwards difference vector
 DIFF_V = np.array([1, -1])
+# array for backwards sum vector
+SUM_V = np.array([1, 1])
+# differance tolerance
+DIFF_TOL = 1
 
 # axes of numpy arrays
 class Axis(Enum):
@@ -173,51 +146,6 @@ def putDataFromFiles(prefix, srcFilenames, dest, delimiter=DELIMITER):
     return dest
 # def putDataFromFiles(srcFilenames, dest)
 
-def removeConflictingFeatures(multidataset):
-    r'''
-     Removes conflicting features.
-     @param multidataset : np.ndarray = dataset that may contain
-         duplicates.
-     @return the dataset containing no duplicates
-     '''
-    sortedData = sortRows(multidataset)
-    edgeArray = backwardDifference(sortedData, sortedData.shape[0])
-    return edgeArray
-# def removeConflictingFeatures(dataset)
-
-def sortRows(unsorted):
-    r'''
-     Sorts an array by each of its rows.
-     @param unsorted : np.ndarray = array to sort
-     '''
-    # convert array into sorted list of tuples
-    sortedTuples = sorted(map(tuple, unsorted))
-    # convert back to an array
-    sortedArray = np.array(sortedTuples)
-    return sortedArray
-# def sortRows(array)
-
-def backwardDifference(array, nRows):
-    r'''
-     Applies a backward difference system to each column of the
-     specified array.
-     @param array : np.ndarray = to which to apply the system
-     @param nRows : int = the nuber of rows in the array
-     @return the array with the backward difference applied
-     '''
-    # covolve each row and comprehend into a list
-    conv = [np.convolve(array[:,k], DIFF_V) for k in range(array.shape[1])]
-    # convert to a numpy array and transpose
-    convArray = np.array(conv).T
-    # given that array has R rows,
-    # the convolved array has (R + 2 - 1) = (R + 1) columns.
-    # so split off the last row
-    (edgeArray, _) = np.split(convArray,
-                         # all rows except for last
-                         (nRows,), axis=Axis.COLS.value)
-    return edgeArray
-# def backwardDifference(array)
-
 def splitFeaturesLabels(dataset, removeIds = False, splitLabels = True):
     r'''
      Divides the dataset into features and labels.
@@ -245,6 +173,71 @@ def splitFeaturesLabels(dataset, removeIds = False, splitLabels = True):
     # if (splitLabels)
     return (features, labels)
 # def splitFeaturesLabels(dataset)
+
+def removeConflictingFeatures(multidataset):
+    r'''
+     Removes conflicting features.
+     @param multidataset : np.ndarray = dataset that may contain
+         duplicates.
+     @return the dataset containing no duplicates
+     '''
+    N_ROWS, N_COLS = multidataset.shape #number of rows, columns in multiset
+    # sort the array
+    multidataset = sortRows(multidataset)
+    # copy and split the data
+    (trainX, train_y) = splitFeaturesLabels(multidataset, True)
+    # flip every other row
+    for k in range(0, N_ROWS, 2):
+        multidataset[k, (N_COLS - 1)] = 1 - multidataset[k, (N_COLS - 1)]
+    # for k in range(0, N_ROWS, 2)
+    # sort the array
+    sortedData = sortRows(multidataset)
+    # apply the backward difference
+    # this zeros out successive identical rows
+    edgeArray = convolve(sortedData, DIFF_V, N_ROWS)
+    # check if under the tolerance (close enought to 0)
+    isZero = np.abs(edgeArray) < DIFF_TOL
+    # apply the backward sum, which acts as an OR
+    # we then offset the array, so it's effectively a forward sum
+    unstrictEdgeArray = convolve(isZero, DIFF_V, (N_ROWS + 1), offset=1)
+    # we check if all cells on any row are 0
+    unstrictEdgeRows = np.all(unstrictEdgeArray, axis=Axis.ROWS.value)
+    # return the results
+    return (trainX[unstrictEdgeRows == False], train_y[unstrictEdgeRows == False])
+# def removeConflictingFeatures(dataset)
+
+def sortRows(unsorted):
+    r'''
+     Sorts an array by each of its rows.
+     @param unsorted : np.ndarray = array to sort
+     '''
+    # convert array into sorted list of tuples
+    sortedTuples = sorted(map(tuple, unsorted))
+    # convert back to an array
+    sortedArray = np.array(sortedTuples)
+    return sortedArray
+# def sortRows(array)
+
+def convolve(M, h, endRow, offset = 0):
+    r'''
+     Convolves each column of the specified array and the specified
+     vector.
+     @param array : np.ndarray = to which to apply the system
+     @param endRow : int = the last index of rows in the array
+     @return the array with the backward difference applied
+     '''
+    # covolve each row and comprehend into a list
+    conv = [np.convolve(M[:,k], h) for k in range(M.shape[1])]
+    # convert to a numpy array and transpose
+    convArray = np.array(conv).T
+    # for DIFF_V, given that M has R rows,
+    # the convolved array has (R + 2 - 1) = (R + 1) rows.
+    # so split off the last row
+    (_, edgeArray, _) = np.split(convArray,
+                         # all rows except for last
+                         (offset, endRow,), axis=Axis.COLS.value)
+    return edgeArray
+# def convolve(M, h, endRow, offset = 0)
 
 # if main module
 if __name__ == "__main__":
