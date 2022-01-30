@@ -1,14 +1,2 @@
-# releases, compressed files
-*.zip
-
-# datasets
-dataset-in/
-
-# Python cached binaries
-__pycache__/
-
-# Jupyter notebook checkpoints
+# Jupyter Notebook checkpoints
 .ipynb_checkpoints/
-
-# Python scripts exported from Jupyter notebooks in lab 4
-hw4-sklearn_mlp/**/part[0-9]*.py
