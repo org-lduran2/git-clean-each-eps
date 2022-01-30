@@ -10,6 +10,11 @@
 # Version   : v2.1.0
 #
 # CHANGELOG :
+#    v2.1.2 - 2022-01-30t18:35R
+#        execution count parameter -> 's'
+#    v2.1.1 - 2022-01-30t18:31R
+#        leading space -> `s`
+#
 #    v2.1.0 - 2022-01-30t17:09R
 #        rewrote as `sed` script
 #
@@ -43,4 +48,4 @@
 #                on `git add`
 #
 #sed "s/\(^\s*"\""execution_count"\"": \)[0-9]\+\(,"\$"\)/\1null\2/g; s/^\s*"\""id"\"": "\""[a-zA-Z0-9_]\+"\"","\$"//g"
-s/\(^\s*\)/s/g
+s/\(^\s*\"execution_count\": \)/s/g
