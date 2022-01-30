@@ -1,17 +1,16 @@
-#!/usr/bin/env sh
-# /git-config-filters
-# Configures the filters for Jupyter Notebooks for this project.  The
-# configuration is to reset the execution count to `null` and ignore
-# the cell ID line per notebook cell.
-#
+#!/usr/bin/env bash
+# Canonical : https://github.com/lduran2/git-clean-each-ipynb/blob/master/git-config-filters
+# Configures the filters for Jupyter Notebooks.
 # By        : Leomar Durán <https://github.com/lduran2/>
-# When      : 2021-12-05t
+# When      : 2022-01-30t17:18R
 # Where     : Temple University
 # For       : CIS 4526
-# Version   : 
-# Canonical : https://github.com/lduran2/cis4526-machine_learning_foundations/blob/master/git-config-filters
+# Version   : 1.2.2
 #
 # CHANGELOG :
+#    v1.2.2 - 2022-01-30t17:18R
+#        filter will call `main` instead of `sed` directly
+#
 #    v1.2.1 - 2021-12-05t03:57
 #        combined both filters in .gitattribute and renamed the
 #            combined filter in to `ipynb`
@@ -38,4 +37,5 @@
 #            set filter `execution_count` to null out execution_count
 #                on `git add`
 #
-git config filter.ipynb.clean 'sed "s/\(^\s*"\""execution_count"\"": \)[0-9]\+\(,"\$"\)/\1null\2/g; s/^\s*"\""id"\"": "\""[a-zA-Z0-9_]\+"\"","\$"//g"'
+declare -r SOURCE_DIR=$(dirname $0)
+git config filter.ipynb.clean $SOURCE_DIR/main
