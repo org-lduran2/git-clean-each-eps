@@ -4,18 +4,24 @@
 # notebook cell.
 #
 # By        : Leomar Durán <https://github.com/lduran2/>
-# When      : 2021-12-05t
+# When      : 2022-01-30t18:43R
 # Where     : Temple University
 # For       : CIS 4526
-# Version   : v2.1.0
+# Version   : v2.1.5
 #
 # CHANGELOG :
+#    v2.1.5 - 2022-01-30t18:43R
+#        removed IDs
+#
 #    v2.1.4 - 2022-01-30t18:39R
 #        execution count: replace value with null, full
+#
 #    v2.1.3 - 2022-01-30t18:37R
 #        execution count number -> 's'
+#
 #    v2.1.2 - 2022-01-30t18:35R
 #        execution count key -> 's'
+#
 #    v2.1.1 - 2022-01-30t18:31R
 #        leading space -> `s`
 #
@@ -51,6 +57,5 @@
 #            set filter `execution_count` to null out execution_count
 #                on `git add`
 #
-#sed "s/\(^\s*"\""execution_count"\"": \)[0-9]\+\(,"\$"\)/\1null\2/g; s/^\s*"\""id"\"": "\""[a-zA-Z0-9_]\+"\"","\$"//g"
 s/\(^\s*\"execution_count\": \)[0-9]\+\(,$\)/\1null\2/g
 s/^\s*\"id\": \"[a-zA-Z0-9_]\+\",$//g
