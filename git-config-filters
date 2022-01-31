@@ -50,13 +50,13 @@ declare -r ROOT_DIR="$SOURCE_DIR/../.."
 declare -r TEMPLATES_DIR="$SOURCE_DIR/templates"
 
 # template files to append to root configuration files
-declare -a tailTemplates=(.gitignore .gitignore)
+declare -a tail_templates=(.gitignore .gitattributes)
 
 # add each tail template to the corresponding config
-for config in "${tailTemplates[@]}"; do
+for config in "${tail_templates[@]}"; do
     echo "Adding to $config . . ."
     cat "$TEMPLATES_DIR/$config" >> "$ROOT_DIR/$config"
-done # for config in "${tailTemplates[@]}"
+done # for config in "${tail_templates[@]}"
 
 # confirm finished
 echo('Done.')
