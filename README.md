@@ -32,11 +32,9 @@ system, but may appear as follows
 PATH=C:\git\cmd;%PATH%
 ```
 
-### Instructions
-
 where the assumed location of the Git installation is `C:\git\cmd`.
 
-Installing requires use of the `git` command within a `bash` shell.  In order
+### Instructions
 
 Then install it in the repo by using
 ```bash
