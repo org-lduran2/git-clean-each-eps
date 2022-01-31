@@ -2,12 +2,15 @@
 # Canonical : https://github.com/lduran2/git-clean-each-ipynb/blob/master/git-config-filters
 # Configures the filters for Jupyter Notebooks.
 # By        : Leomar Durán <https://github.com/lduran2/>
-# When      : 2022-01-30t19:01R
+# When      : 2022-01-30t19:15R
 # Where     : Temple University
 # For       : CIS 4526
-# Version   : 1.2.3
+# Version   : 1.2.4
 #
 # CHANGELOG :
+#    v1.2.4 - 2022-01-30t19:15R
+#        put templates in `for` loop
+#
 #    v1.2.3 - 2022-01-30t19:01R
 #        templates copied to root
 #
@@ -41,18 +44,19 @@
 #                on `git add`
 #
 
+# working directories
 declare -r SOURCE_DIR=$(dirname $0)
 declare -r ROOT_DIR="$SOURCE_DIR/../.."
 declare -r TEMPLATES_DIR="$SOURCE_DIR/templates"
 
-echo 'Adding to .gitignore . . .'
-cat < $TEMPLATES_DIR/.gitignore >> $ROOT_DIR/.gitignore
+# template files to append to root configuration files
+declare -a tailTemplates=(.gitignore .gitignore)
 
-echo 'Adding to .gitattributes . . .'
-cat < $TEMPLATES_DIR/.gitattributes >> $ROOT_DIR/.gitattributes
-
-echo 'Configuring *.ipynb clean filter . . .'
-git config filter.ipynb.clean $SOURCE_DIR/main
+# add each tail template to the corresponding config
+for config in "${tailTemplates[@]}"; do
+    echo "Adding to $config . . ."
+    cat "$TEMPLATES_DIR/$config" >> "$ROOT_DIR/$config"
+done # for config in "${tailTemplates[@]}"
 
 # confirm finished
 echo('Done.')
