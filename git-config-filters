@@ -2,12 +2,16 @@
 # Canonical : https://github.com/lduran2/git-clean-each-ipynb/blob/master/git-config-filters
 # Configures the filters for Jupyter Notebooks.
 # By        : Leomar Durán <https://github.com/lduran2/>
-# When      : 2022-01-30t19:15R
+# When      : 2022-01-30t19:42R
 # Where     : Temple University
 # For       : CIS 4526
-# Version   : 1.2.4
+# Version   : 1.2.5
 #
 # CHANGELOG :
+#    v1.2.5 - 2022-01-30t19:42R
+#        added `.gitattributes` to `tail_templates`
+#        removed parentheses from `echo 'Done.'`
+#
 #    v1.2.4 - 2022-01-30t19:15R
 #        put templates in `for` loop
 #
@@ -59,4 +63,4 @@ for config in "${tail_templates[@]}"; do
 done # for config in "${tail_templates[@]}"
 
 # confirm finished
-echo('Done.')
+echo 'Done.'
