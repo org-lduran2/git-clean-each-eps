@@ -1,5 +1,5 @@
 # [lduran2] / [git-clean-each-ipynb]
-###### forked from [lduran2/cis4526-machine_learning_foundations]
+<small>forked from [lduran2/cis4526-machine_learning_foundations]</small>
 
 configures the filters and `.gitignore`s for cleaning Jupyter
 notebooks.
@@ -16,6 +16,25 @@ This command will download update `git-clean-each-ipynb` to
 submodule.
 
 ## How to install
+
+### Requirements
+
+Installing requires use of the `git` command within a `bash` shell.
+Allowing access to the `git` command, requires an extra step in
+Windows operating systems. Namely, it requires adding `$git/cmd` to
+the `%PATH%` variable where `$git` is the directory of the Git
+installation.  This depends on the location of Git and the operating
+system, but may look as follows
+
+```batch
+PATH=C:\git\cmd;%PATH%
+```
+
+### Instructions
+
+where the assumed location of the Git installation is `C:\git\cmd`.
+
+Installing requires use of the `git` command within a `bash` shell.  In order
 
 Then install it in the repo by using
 ```bash
