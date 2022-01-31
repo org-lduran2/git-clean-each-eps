@@ -2,12 +2,15 @@
 # Canonical : https://github.com/lduran2/git-clean-each-ipynb/blob/master/git-config-filters
 # Configures the filters for Jupyter Notebooks.
 # By        : Leomar Durán <https://github.com/lduran2/>
-# When      : 2022-01-30t17:18R
+# When      : 2022-01-30t19:01R
 # Where     : Temple University
 # For       : CIS 4526
-# Version   : 1.2.2
+# Version   : 1.2.3
 #
 # CHANGELOG :
+#    v1.2.3 - 2022-01-30t19:01R
+#        templates copied to root
+#
 #    v1.2.2 - 2022-01-30t17:18R
 #        filter will call `main` instead of `sed` directly
 #
@@ -37,5 +40,19 @@
 #            set filter `execution_count` to null out execution_count
 #                on `git add`
 #
+
 declare -r SOURCE_DIR=$(dirname $0)
+declare -r ROOT_DIR="$SOURCE_DIR/../.."
+declare -r TEMPLATES_DIR="$SOURCE_DIR/templates"
+
+echo 'Adding to .gitignore . . .'
+cat < $TEMPLATES_DIR/.gitignore >> $ROOT_DIR/.gitignore
+
+echo 'Adding to .gitattributes . . .'
+cat < $TEMPLATES_DIR/.gitattributes >> $ROOT_DIR/.gitattributes
+
+echo 'Configuring *.ipynb clean filter . . .'
 git config filter.ipynb.clean $SOURCE_DIR/main
+
+# confirm finished
+echo('Done.')
