@@ -1,21 +1,35 @@
-#!/usr/bin/env bash
-# Canonical : https://github.com/lduran2/git-clean-each-ipynb/blob/master/git-config-filters
-# Configures the filters for Jupyter Notebooks.
+#!/usr/bin/env -S sed -f
+# Canonical : https://github.com/lduran2/git-clean-each-ipynb/blob/master/main
+# Resets the execution count to `null` and ignores the cell ID line per
+# notebook cell.
+#
 # By        : Leomar Durán <https://github.com/lduran2/>
-# When      : 2022-01-30t19:15R
+# When      : 2022-01-30t18:43R
 # Where     : Temple University
 # For       : CIS 4526
-# Version   : 1.2.4
+# Version   : v2.1.5
 #
 # CHANGELOG :
-#    v1.2.4 - 2022-01-30t19:15R
-#        put templates in `for` loop
+#    v2.1.5 - 2022-01-30t18:43R
+#        removed IDs
 #
-#    v1.2.3 - 2022-01-30t19:01R
-#        templates copied to root
+#    v2.1.4 - 2022-01-30t18:39R
+#        execution count: replace value with null, full
 #
-#    v1.2.2 - 2022-01-30t17:18R
-#        filter will call `main` instead of `sed` directly
+#    v2.1.3 - 2022-01-30t18:37R
+#        execution count number -> 's'
+#
+#    v2.1.2 - 2022-01-30t18:35R
+#        execution count key -> 's'
+#
+#    v2.1.1 - 2022-01-30t18:31R
+#        leading space -> `s`
+#
+#    v2.1.0 - 2022-01-30t17:09R
+#        rewrote as `sed` script
+#
+#    v2.0.0 - 2022-01-30t16:57R
+#        split off from `/git-config-filters`
 #
 #    v1.2.1 - 2021-12-05t03:57
 #        combined both filters in .gitattribute and renamed the
@@ -43,20 +57,5 @@
 #            set filter `execution_count` to null out execution_count
 #                on `git add`
 #
-
-# working directories
-declare -r SOURCE_DIR=$(dirname $0)
-declare -r ROOT_DIR="$SOURCE_DIR/../.."
-declare -r TEMPLATES_DIR="$SOURCE_DIR/templates"
-
-# template files to append to root configuration files
-declare -a tail_templates=(.gitignore .gitattributes)
-
-# add each tail template to the corresponding config
-for config in "${tail_templates[@]}"; do
-    echo "Adding to $config . . ."
-    cat "$TEMPLATES_DIR/$config" >> "$ROOT_DIR/$config"
-done # for config in "${tail_templates[@]}"
-
-# confirm finished
-echo('Done.')
+s/\(^\s*\"execution_count\": \)[0-9]\+\(,$\)/\1null\2/g
+s/^\s*\"id\": \"[a-zA-Z0-9_]\+\",$//g
