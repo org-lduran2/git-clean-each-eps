@@ -1,6 +1,5 @@
-# [lduran2][lduran2] / [git-clean-each-ipynb][git-clean-each-ipynb]
+# [lduran2] / [git-clean-each-ipynb]
 ###### forked from [lduran2/cis4526-machine_learning_foundations]
-[lduran2/cis4526-machine_learning_foundations]
 
 configures the filters and `.gitignore`s for cleaning Jupyter
 notebooks.
