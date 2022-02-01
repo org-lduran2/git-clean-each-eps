@@ -9,7 +9,7 @@
 #
 # CHANGELOG :
 #    v1.2.7 - 2022-01-31t20:57R
-#        `git add` configuration files automatically
+#        staging configuration files automatically
 #
 #    v1.2.6 - 2022-01-30t20:05R
 #        restored `git config ...`
@@ -65,7 +65,7 @@ declare -a tail_templates=(.gitignore .gitattributes)
 
 # add each tail template to the corresponding config
 for config in "${tail_templates[@]}"; do
-    echo "Adding to $config . . ."
+    echo "Adding to and staging $config . . ."
     cat "$TEMPLATES_DIR/$config" >> "$ROOT_DIR/$config"
     # stage the configuration (in case it is not already)
     git add "$ROOT_DIR/$config"
