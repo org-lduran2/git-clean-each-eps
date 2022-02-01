@@ -2,12 +2,15 @@
 # Canonical : https://github.com/lduran2/git-clean-each-ipynb/blob/master/git-config-filters
 # Configures the filters for Jupyter Notebooks.
 # By        : Leomar Durán <https://github.com/lduran2/>
-# When      : 2022-01-30t20:05R
+# When      : 2022-01-31t20:57R
 # Where     : Temple University
 # For       : CIS 4526
-# Version   : 1.2.6
+# Version   : 1.2.7
 #
 # CHANGELOG :
+#    v1.2.7 - 2022-01-31t20:57R
+#        staging configuration files automatically
+#
 #    v1.2.6 - 2022-01-30t20:05R
 #        restored `git config ...`
 #
@@ -62,8 +65,10 @@ declare -a tail_templates=(.gitignore .gitattributes)
 
 # add each tail template to the corresponding config
 for config in "${tail_templates[@]}"; do
-    echo "Adding to $config . . ."
+    echo "Adding to and staging $config . . ."
     cat "$TEMPLATES_DIR/$config" >> "$ROOT_DIR/$config"
+    # stage the configuration (in case it is not already)
+    git add "$ROOT_DIR/$config"
 done # for config in "${tail_templates[@]}"
 
 echo 'Configuring *.ipynb clean filter . . .'
