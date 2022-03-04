@@ -41,7 +41,7 @@ Then install it in the repo by using
 bash filters/clean-each-ipynb/git-setup-filters
 ```
 
-**Note that** this was changed from `git-`**``config``**-``filters``.
+**Note:** This was changed from `git-`**`config`**`-filters`.
 
 This script updates `.gitignore` to ignore Jupyter Notebook checkpoints
 (`.ipynb_checkpoints/` directories) and `.gitattributes` to associate
