@@ -1,13 +1,18 @@
 #!/usr/bin/env bash
-# Canonical : https://github.com/lduran2/git-clean-each-ipynb/blob/master/git-setup-filters
-# Configures the filters for Jupyter Notebooks.
+# Canonical : https://github.com/org-lduran2/git-clean-each-eps/blob/master/git-setup-filters
+# Sets up files for the filters for Encapsulated Postscript files.
 # By        : Leomar Durán <https://github.com/lduran2/>
-# When      : 2022-03-04t03:35R
+# When      : 2023-03-15t13:27R
 # Where     : Temple University
-# For       : CIS 4526
-# Version   : 1.3.2
+# For       : ECE 3413
+# Version   : 2.0.0
 #
 # CHANGELOG :
+#    v2.0.0 - 2023-03-15t13:27R
+#        cloned from https://github.com/org-lduran2/git-clean-each-ipynb
+#		 updated for EPS
+#		 only sets up .gitattributes, not .gitignore
+#
 #    v1.3.2 - 2022-03-04t03:35R
 #        the config script in a new process
 #
@@ -73,7 +78,7 @@ declare -r ROOT_DIR="$SOURCE_DIR/../.."
 declare -r TEMPLATES_DIR="$SOURCE_DIR/templates"
 
 # template files to append to root configuration files
-declare -a tail_templates=(.gitignore .gitattributes)
+declare -a tail_templates=(.gitattributes)
 
 # add each tail template to the corresponding config
 for config in "${tail_templates[@]}"; do
@@ -92,7 +97,7 @@ for config in "${tail_templates[@]}"; do
     git add "$root_config"
 done # for config in "${tail_templates[@]}"
 
-echo 'Configuring *.ipynb clean filter . . .'
+echo 'Configuring *.eps clean filter . . .'
 $SOURCE_DIR/git-config-filters
 
 # confirm finished

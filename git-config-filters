@@ -1,13 +1,18 @@
 #!/usr/bin/env bash
-# Canonical : https://github.com/lduran2/git-clean-each-ipynb/blob/master/git-config-filters
-# Configures the filters for Jupyter Notebooks.
+# Canonical : https://github.com/org-lduran2/git-clean-each-eps/blob/master/git-config-filters
+# Configures the filters for Encapsulated Postscript files.
 # By        : Leomar Durán <https://github.com/lduran2/>
-# When      : 2022-03-04t02:58R
+# When      : 2023-03-15t13:23R
 # Where     : Temple University
-# For       : CIS 4526
-# Version   : 1.3.0
+# For       : ECE 3413
+# Version   : 2.0.0
 #
 # CHANGELOG :
+#    v2.0.0 - 2023-03-15t13:23R
+#        cloned from https://github.com/org-lduran2/git-clean-each-ipynb
+#		 updated for EPS
+#		 the filter for Encapsulated Postscript files is called `eps`
+#
 #    v1.3.0 - 2022-03-04t02:58R
 #        split from `git-setup-filters`
 #
@@ -64,5 +69,5 @@
 # working directories
 declare -r SOURCE_DIR=$(dirname $0)
 
-# configure the *.ipynb clean filter
-git config filter.ipynb.clean $SOURCE_DIR/main
+# configure the *.eps clean filter
+git config filter.eps.clean $SOURCE_DIR/main
