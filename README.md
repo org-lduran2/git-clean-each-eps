@@ -9,7 +9,7 @@ Postscript files.
 
 Add this module to your repo from its root directory by using
 ```bash
-git submodule add https://github.com/lduran2/git-clean-each-eps filters/clean-each-eps
+git submodule add https://github.com/org-lduran2/git-clean-each-eps filters/clean-each-eps
 ```
 
 This command will download `git-clean-each-eps` to
@@ -64,6 +64,6 @@ It is not necessary to run this configuration script immediately after a
 successful installation with no changes to the configuration.
 
 [org-lduran2]: https://github.com/org-lduran2
-[git-clean-each-eps]: https://github.com/lduran2/git-clean-each-eps
+[git-clean-each-eps]: https://github.com/org-lduran2/git-clean-each-eps
 [org-lduran2/git-clean-each-ipynb]: https://github.com/org-lduran2/git-clean-each-ipynb
 [lduran2/cis4526-machine_learning_foundations]: https://github.com/lduran2/cis4526-machine_learning_foundations
